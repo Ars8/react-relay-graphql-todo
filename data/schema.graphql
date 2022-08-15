@@ -1,0 +1,76 @@
+directive @specifiedBy(
+  url: String!
+) on SCALAR
+
+input CreateTodoInput {
+  title: String!
+  completed: Boolean
+  clientMutationId: String
+}
+
+type CreateTodoPayload {
+  todoEdge: TodoEdge!
+  clientMutationId: String
+}
+
+input DeleteTodoInput {
+  todoId: ID
+  clientMutationId: String
+}
+
+type DeleteTodoPayload {
+  deletedTodoId: ID
+  clientMutationId: String
+}
+
+type Mutation {
+  createTodo(input: CreateTodoInput!): CreateTodoPayload
+  deleteTodo(input: DeleteTodoInput!): DeleteTodoPayload
+  toggleTodo(input: ToggleTodoInput!): ToggleTodoPayload
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  hello: String
+  todos(status: String = "any", after: String, first: Int, before: String, last: Int): TodoConnection
+  node(
+    id: ID!
+  ): Node
+}
+
+type Todo implements Node {
+  id: ID!
+  title: String
+  completed: Boolean
+}
+
+type TodoConnection {
+  pageInfo: PageInfo!
+  edges: [TodoEdge]
+}
+
+type TodoEdge {
+  node: Todo
+  cursor: String!
+}
+
+input ToggleTodoInput {
+  todoId: ID
+  clientMutationId: String
+}
+
+type ToggleTodoPayload {
+  todo: Todo
+  clientMutationId: String
+}
+
