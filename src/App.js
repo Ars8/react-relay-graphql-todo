@@ -1,13 +1,18 @@
 import "./App.css";
-import { RelayEnvironmentProvider } from "react-relay/hooks";
+//import { RelayEnvironmentProvider } from "react-relay/hooks";
 
-import environment from "./environment";
-import Todos from "./Todos/Todos";
+//import environment from "./environment";
+//import Todos from "./Todos/Todos";
 
-export default function App() {
+function App() {
   return (
-    <RelayEnvironmentProvider environment={environment}>
+    <>
+      <div>Hello, world!</div>
+    </>
+    /* <RelayEnvironmentProvider environment={environment}>
         <Todos />
-    </RelayEnvironmentProvider>
+    </RelayEnvironmentProvider> */
   );
 }
+
+export default App;
