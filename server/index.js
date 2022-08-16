@@ -1,29 +1,27 @@
-const express = require('express')
-const {graphqlHTTP} = require('express-graphql')
-const cors = require('cors')
-const schema = require('./schema')
-const users = [{id: 1, username: "Vasya", age: 25}]
+import express from 'express';
+import {graphqlHTTP} from "express-graphql"
+import cors from "cors"
+import schema from "./schema.js"
+
+const todos = [{id: 1, text: "Hello relay", completed: true}]
 
 const app = express()
 app.use(cors())
 
-const createUser = (input) => {
+const createTodo = (input) => {
     const id = Date.now()
     return {
         id, ...input
     }
 }
 const root = {
-    getAllUsers: () => {
-        return users
+    getTodos: () => {
+        return todos
     },
-    getUser: ({id}) => {
-        return users.find(user => user.id == id)
-    },
-    createUser: ({input}) => {
-        const user = createUser(input)
-        users.push(user)
-        return user
+    createTodo: ({input}) => {
+        const todo = createTodo(input)
+        todos.push(todo)
+        return todo
     }
 }
 

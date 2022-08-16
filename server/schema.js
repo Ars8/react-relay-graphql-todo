@@ -2,36 +2,24 @@ import {buildSchema} from 'graphql'
 
 const schema = buildSchema(`
     
-    type User {
+    type Todo {
         id: ID
-        username: String
-        age: Int
-        posts: [Post]
+        text: String
+        completed: Boolean
     }
-    type Post {
+
+    input TodoInput {
         id: ID
-        title: String
-        content: String
-    }
-    
-    input UserInput {
-        id: ID
-        username: String!
-        age: Int!
-        posts: [PostInput]
-    }
-    input PostInput {
-        id: ID
-        title: String!
-        content: String!
+        text: String!
+        completed: Boolean!
     }
     
     type Query {
-        getAllUsers: [User]
-        getUser(id: ID): User
+        getTodos: [Todo]
     }
+
     type Mutation {
-        createUser(input: UserInput): User
+        createTodo(input: TodoInput): Todo
     }
 
 `)
