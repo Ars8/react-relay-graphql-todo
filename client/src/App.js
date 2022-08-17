@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ListItem } from './components/ListItem';
 import { TaskField } from './components/TaskField';
 import './App.css';
@@ -27,8 +27,14 @@ const preloadedQuery = loadQuery(RelayEnvironment, RepositoryNameQuery, {
 
 function App(props) {
   const data = usePreloadedQuery(RepositoryNameQuery, props.preloadedQuery);
-  
-  const [tasks, setTasks] = React.useState([data.getTodos]);
+  console.log(data.getTodos);
+
+  const [tasks, setTasks] = React.useState([]);
+
+  useEffect(() => {
+    setTasks(data.getTodos);
+    console.log(tasks)
+  }, []);
 
   const onToggleCompleted = (index) => {
     setTasks((prevTasks) =>
