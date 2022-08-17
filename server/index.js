@@ -3,7 +3,7 @@ import {graphqlHTTP} from "express-graphql"
 import cors from "cors"
 import schema from "./schema.js"
 
-const todos = [{id: 1, text: "Hello relay", completed: true}]
+const todos = [{id: 1, text: "Hello relay", completed: true}, {id: 1, text: "Hello react", completed: false}]
 
 const app = express()
 app.use(cors())
