@@ -20,6 +20,8 @@ const schema = buildSchema(`
 
     type Mutation {
         createTodo(input: TodoInput): Todo
+        removeTodo(id: ID): [Todo]
+        toggleCompleted(id: ID): Todo
     }
 
 `)
