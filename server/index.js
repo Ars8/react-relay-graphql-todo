@@ -24,7 +24,7 @@ const root = {
         todos.push(todo)
         return todo
     },
-    removeTodo: (id) => {
+    removeTodo: ({id}) => {
         todos = todos.filter((todo) => todo.id !== id)  
         return todos   
     },
